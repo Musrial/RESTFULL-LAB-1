@@ -22,3 +22,30 @@
 ## Tahap 2: Membuat Aplikasi Front-End dengan Expo
 
 ### 1. Buat Proyek Expo
+    expo init cappo-coffee
+    cd cappo-coffee
+
+### 2. Mulai Aplikasi Expo:
+    expo start
+
+### 3. Struktur Proyek
+- App.js akan menjadi titik masuk aplikasi Anda. Anda dapat membuat folder `screens` untuk layar yang berbeda seperti Home, Menu, Order, dll.
+
+Contoh `App.js`
+
+    import React from 'react'
+    import { NavigationContainer } from @react-navigation/native
+    import { createStackNavigator } from @react-navigation/stack
+    import HomeScreen from './screens/HomeScreens.js';
+    import MenuScreen from './screens/MenuScreens.js';
+
+    const Stack = createStackNavigator() {
+        return (
+            <NavigationContainer>
+                    <Stack.Navigator initialRouteName="Home">
+                    <Stack.Screen name="Home" component={HomeScreens}>
+                    <Stack.Screen name="Menu" component={MenuScreens}>
+                </Stack.Navigator>
+            </NavigationContainer>
+        )
+    }
