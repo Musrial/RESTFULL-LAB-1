@@ -1,21 +1,20 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
+import api from '../api';
 
 const LoginScreen = ({ navigation }) => {
   const { control, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = data => {
-    axios.post('http://localhost:3000/auth/login', data)
-      .then(response => {
-        // Handle success (e.g., navigate to home screen)
-        console.log(response.data);
-      })
-      .catch(error => {
-        // Handle error
-        console.error(error);
-      });
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post('/auth/login', data);
+      Alert.alert('Success', 'Logged in successfully');
+      navigation.navigate('Home');
+      // Simpan token ke state atau storage untuk keperluan autentikasi selanjutnya
+    } catch (error) {
+      Alert.alert('Error', 'Failed to log in');
+    }
   };
 
   return (
@@ -36,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
         rules={{ required: true }}
       />
       {errors.email && <Text>This is required.</Text>}
-      
+
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -53,9 +52,9 @@ const LoginScreen = ({ navigation }) => {
         rules={{ required: true }}
       />
       {errors.password && <Text>This is required.</Text>}
-      
+
       <Button title="Login" onPress={handleSubmit(onSubmit)} />
-      <Button title="Sign Up" onPress={() => navigation.navigate('Signup')} />
+      <Button title="SignUp?" onPress={() => navigation.navigate('SignUp')} />
       <Button title="Forgot Password?" onPress={() => navigation.navigate('ForgotPassword')} />
     </View>
   );
