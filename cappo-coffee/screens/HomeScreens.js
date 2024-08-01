@@ -1,10 +1,30 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList } from 'react-native';
 
-export default function HomeScreens() {
+const MenuScreen = () => {
+  const [coffees, setCoffees] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/coffees')
+      .then(response => response.json())
+      .then(data => setCoffees(data))
+      .catch(error => console.error(error));
+  }, []);
+
   return (
     <View>
-      <Text>My</Text>
+      <FlatList
+        data={coffees}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.name}</Text>
+            <Text>{item.price}</Text>
+          </View>
+        )}
+      />
     </View>
-  )
+  );
 }
+
+export default MenuScreen;

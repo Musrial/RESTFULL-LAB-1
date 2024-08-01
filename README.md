@@ -25,6 +25,12 @@
     expo init cappo-coffee
     cd cappo-coffee
 
+    Install Dependensi
+    npm install @react-navigation/native
+    npm install @react-navigation/stack
+    npm install react-native-screens react-native-safe-area-context
+    npm install @expo/vector-icons
+
 ### 2. Mulai Aplikasi Expo:
     expo start
 
@@ -49,3 +55,12 @@ Contoh `App.js`
             </NavigationContainer>
         )
     }
+
+
+## Tahap 3: Membuat Back-End dengan NestJS dan Prisma
+
+### 1. Buat Proyek NestJS:
+    nest new cappo-coffee-backend
+    cd cappo-coffee-backend
+
+### 2. 
