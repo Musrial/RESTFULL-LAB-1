@@ -12,7 +12,7 @@ const SplashScreen = ({ navigation }) => {
         <Text style={styles.subtitle}>
           Welcome to our cozy coffee corner, where every cup is delightful for you.
         </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} color="#A0522D" style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} color="#A0522D" style={styles.button}>
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
